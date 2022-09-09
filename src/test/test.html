@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <!-- script是压缩过的包 -->
+    <!-- Babel是转换代码的作用 -->
+    <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<!--    <link rel="stylesheet" href="index.css">-->
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    class App extends React.Component{
+        constructor() {
+            super();
+            // 1. add state
+            this.state = {
+                a : 20
+            };
+            this.change = this.change.bind(this);
+        }
+
+        render() {
+            return (
+                // 2. use state
+                <div>
+                    <p>
+                        The num I got is : {this.props.num}
+                    </p>
+                    <div>
+                        <button onClick={ () => {this.setState({a : this.state.a+10})} }>
+                            click me</button>
+                        <button onClick={ this.change }>click me</button>
+                        {this.state.a}
+                    </div>
+                </div>
+            )
+        }
+        change() {
+            this.setState({a : 999})
+            console.log(this);
+        }
+    }
+
+    ReactDOM.render(
+        <App num = {10}/>,
+        document.getElementById('root')
+    );
+</script>
+
+
+<!--<script type="text/babel">-->
+<!--    //ES6 相比 ES5进步了很多，可以看教案的网站 http://es6-features.org/#Constants-->
+<!--    // ES6 / React / JSX code from here-->
+<!--    //let 和 const 解决js中不规范的代码-->
+<!--    //let 可以被reassign，const不行，都有block scope-->
+<!--    //现在基本不用var了-->
+<!--    //const 和 let 没有hoist的问题-->
+<!--    var global = 1;-->
+
+<!--    function test(){-->
+<!--        var local = 2;-->
+<!--        console.log(global);-->
+<!--    }-->
+
+<!--    test();-->
+<!--    console.log(global);-->
+<!--</script>-->
+<h1>test</h1>
+</body>
+</html>
